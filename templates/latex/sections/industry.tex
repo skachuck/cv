@@ -1,16 +1,17 @@
 ~< extends "section.tex" >~
 
 ~< block body >~
-  \begin{itemize}
     ~< for item in items >~
-      \item << item.title >>, << item.place >>\hfill << item.dates >>
-        \iffalse
+      {\bf << item.place >>} \hfill << item.dates >> \newline
+      {\it << item.title >>}
+        \iftrue
         \begin{itemize}
           ~< for detail in item.details ->~
             \item <<detail>>
           ~<- endfor ->~
         \end{itemize}
         \fi
+	\vspace{10mm}
     ~< endfor >~
-  \end{itemize}
 ~< endblock body >~
+\vspace{-10mm}

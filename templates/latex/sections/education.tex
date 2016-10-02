@@ -1,17 +1,19 @@
 ~< extends "section.tex" >~
-
 ~< block body >~
 ~< for school in items >~
-\cvlistitem{
+  {\bf << school.school >>}
+  {\hfill}
+  << school.dates >> \\
   ~< if school.degree >~
-    << school.degree >>,
+    << school.degree >>
   ~< endif >~
-  << school.school >>
   ~< if school.overallGPA >~
     (<< school.overallGPA >>)
   ~< endif >~
-  \hfill
-  << school.dates >>
-}
+  ~< if school.honors >~
+    \newline
+    {\it << school.honors >>}
+  ~< endif >~
+  \newline
 ~< endfor >~
 ~< endblock body >~

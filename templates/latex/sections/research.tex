@@ -2,11 +2,14 @@
 
 ~< block body >~
     ~< for item in items >~
-        \cvlistitem{
-          << item.place >>, << item.advisor >> \hfill << item.dates >>
-          \begin{itemize}
-          \item << item.area >>
-          \end{itemize}
-        }
+	  {\bf << item.title >>} \hfill <<item.dates >>\\
+	  {{ << item.place >>}}\\
+	  {\it Advisor:} << item.advisor >>\\
+	  {\it Area:} << item.area >>
+	  \begin{itemize}
+	  \item << item.details >>
+	  \end{itemize}
+	  \vspace{5mm}
     ~< endfor >~
 ~< endblock body >~
+\vspace{-5mm}

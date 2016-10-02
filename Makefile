@@ -3,9 +3,9 @@
 # Brandon Amos <http://bamos.github.io> and
 # Ellis Michael <http://ellismichael.com>
 
-WEBSITE_DIR=$(HOME)/repos/website
+WEBSITE_DIR=$(HOME)/workspace/davelindell.github.io
 WEBSITE_PDF=$(WEBSITE_DIR)/data/cv.pdf
-WEBSITE_MD=$(WEBSITE_DIR)/_includes/cv.md
+WEBSITE_MD=$(WEBSITE_DIR)/data/cv.md
 WEBSITE_DATE=$(WEBSITE_DIR)/_includes/last-updated.txt
 
 TEMPLATES=$(shell find templates -type f)
