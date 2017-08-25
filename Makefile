@@ -3,9 +3,9 @@
 # Brandon Amos <http://bamos.github.io> and
 # Ellis Michael <http://ellismichael.com>
 
-WEBSITE_DIR=$(HOME)/workspace/davelindell.github.io
+WEBSITE_DIR=$(HOME)/work/skachuck.github.io
 WEBSITE_PDF=$(WEBSITE_DIR)/data/cv.pdf
-WEBSITE_MD=$(WEBSITE_DIR)/data/cv.md
+WEBSITE_MD=$(WEBSITE_DIR)/cv.md
 WEBSITE_DATE=$(WEBSITE_DIR)/_includes/last-updated.txt
 
 TEMPLATES=$(shell find templates -type f)
@@ -29,10 +29,14 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 public: $(BUILD_DIR) $(TEMPLATES) $(YAML_FILES) generate.py
+	source activate py36
 	./generate.py cv.yaml
+	source deactivate py36
 
 $(TEX) $(MD): $(TEMPLATES) $(YAML_FILES) generate.py
+	source activate py36
 	./generate.py $(YAML_FILES)
+	source deactivate py36
 
 $(PDF): $(TEX) publications/*.bib
 	# TODO: Hack for biber on OSX.
@@ -42,7 +46,7 @@ $(PDF): $(TEX) publications/*.bib
 	latexmk -c -cd $(BUILD_DIR)/cv
 
 viewpdf: $(PDF)
-	gnome-open $(PDF)
+	xdg-open $(PDF)
 
 stage: $(PDF) $(MD)
 	cp $(PDF) $(WEBSITE_PDF)
