@@ -5,7 +5,7 @@
 {% for i in items %}
 <tr>
   <td class='col-md-1'>{{ i.semester }}</td>
-  <td><strong>{{ i.name }}</strong> ({{ i.short }}), {{ i.position }}</td>
+  <td><strong>{{ i.name }}</strong> ({{ i.short }}), {{ i.title }}</td>
 </tr>
 {% endfor %}
 </table>

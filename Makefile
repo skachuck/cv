@@ -29,14 +29,14 @@ $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
 public: $(BUILD_DIR) $(TEMPLATES) $(YAML_FILES) generate.py
-	source activate py36
+#	source activate py36
 	./generate.py cv.yaml
-	source deactivate py36
+#	source deactivate py36
 
 $(TEX) $(MD): $(TEMPLATES) $(YAML_FILES) generate.py
-	source activate py36
+#	source activate py36
 	./generate.py $(YAML_FILES)
-	source deactivate py36
+#	source deactivate py36
 
 $(PDF): $(TEX) publications/*.bib
 	# TODO: Hack for biber on OSX.

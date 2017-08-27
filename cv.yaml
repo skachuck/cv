@@ -4,7 +4,7 @@ name:
   last: Kachuck
 phone: ~(818)~307~2685
 email: sbk83@cornell.edu
-
+src: https://github.com/skachuck/cv
 pdf: /data/cv.pdf
 url: georei.com
 social:
@@ -18,39 +18,42 @@ color: blue  # blue, orange, green, red, purple, grey and black
 color2: '0.25,0.25,0.25' # Make the font under the name a darker grey.
 
 # (tag, section type, title)
-order:
-  # - [interests, Research Interests]
+order: 
+  - [interests, '']
   - [education, Education]
-  # - [research, Research Experience]
+  - [research, Research Experience]
   # - [NEWPAGE, NEWPAGE]
-  # - [publications, Publications]
+  - [publications, Publications]
   # - [NEWPAGE, NEWPAGE]
-   - [teaching, Teaching Experience]
+  - [teaching, Teaching Experience]
   # - [industry, Industry Experience]
   # - [projects, Projects]
   - [skills, Skills]
   # - [coursework, Graduate Coursework]
   - [honors, Honors \& Awards]
-#  - [activities, Activities]
+  - [activities, Service]
+  - [all_publications, All Publications]
 
-about: >
+interests: >
   I am in the final year of a Ph.D. in Geophysics at Cornell University. My interests 
   include fluid dynamics and statistical physics in general. My thesis research focuses 
   on computing how the earth responds to the mass redistributions of the last ice age, 
   when over 4 million Gigatons of water (about 3\% of the oceans) moved from the ocean 
-  to the continents, and predicting the effects this is having sea level changes today
+  to the continents, and predicting the effects this is having on sea level changes today
   using sparse surface observations.
+
+
 
   I believe that communicating and teaching science honestly is vitally important for its 
   continued success, perhaps now more than ever. I am thus dedicated to studying and 
   implementing modern pedagogical methods in my classrooms, presentations, and with my 
   peers in a way that emphasizes the social, historical, and human aspects of science.
 
-news:
-    - date: 
-      info: 
+#news:
+#    - date: 
+#      info: 
 
-education:
+education: 
   - school: Cornell University
     location: Ithaca, New York
     degree: Ph.D. in Geophysics
@@ -66,34 +69,58 @@ education:
     honor: with Merit
     advisor: Stuart B. Dalziel
     thesis: The Interaction of a Buoyant Plume with a Grid
-    dates: Oct 2010 -- June 2011
+    dates: Oct 2010 -- May 2011
   - school: Wesleyan University
     location: Middletown, Connecticut
     degree: B.A. in Physics and Mathematical Economics
     honor: with High Honors in Physics
-    dates: Sep 2006 -- May 2010
+    dates: Sep 2006 -- June 2010
     advisor: Greg A. Voth
     thesis: Granular Gravitational Collapse in Realistically Simulated Granular Gases
     GPA: 3.89
 
 research:
-  - 
+  - place: Cornell University
+    location: Ithaca, New York
+    title: Graduate Research Fellow
+    advisor: Prof. Lawrence M. Cathles, III
+    dates: May 2012 -- Present
+    area: Glacial Isostatic Modeling and Analysis
+  - place: Cornell University
+    location: Ithaca, New York
+    title: Graduate Research Assistant
+    advisor: Prof. Itai Cohen
+    dates: Sep 2011 -- May 2012
+    area: Insect Flight Stability and Control
+  - place: GK Batchelor Fluids Laboratory
+    location: Cambridge, U.K.
+    title: Research Assistant
+    advisor: Dr. Stuart B. Dalziel
+    dates: Oct 2010 -- May 2011
+    area: Buoyancy in Permeable Media
+  - place: Wesleyan University
+    location: Middletown, Connecticut
+    title: Undergraduate Research Assistant
+    advisor: Prof. Greg A. Voth
+    dates: Aug 2008 -- June 2010
+    area: Granular Gas Dynamics
 
-teaching:
-  - semester: S2012 --
-    title: Private Tutor
-    name: CU PHYS 2207, 2208, 1112, 2213, 2216; MAE 3780; CEE 3310
+teaching:  
+  - semester: S2012 -- present
+    title: '{}'
+    name: Private Tutor
+    short: 'PHYS 2207, 2208, 1112, 2213, 2216; MAE 3780; CEE 3310'
   - semester: S2017
     title: GTA
     name: Analytical Mechanics
     short: CU PHYS 3318
   - semester: F2011, S2012, Su2012
     title: GTA
-    name: Physics II: Electromagnetism
+    name: "Physics II: Electromagnetism"
     short: CU PHYS 2213
   - semester: F2012
     title: GTA
-    name: Physics I: Mechanics and Heat
+    name: "Physics I: Mechanics and Heat"
     short: CU PHYS 1112
   - semester: S2010
     title: UTA
@@ -112,7 +139,11 @@ teaching:
     name: General Physics I
     short: W PHYS 113
 
-service:
+publications:
+  name: "S. Kachuck"
+  file: journal.bib
+
+activities: 
   - title: Letters to a Pre-Scientist
     year: 2016-
     description: Was pen-pal to elementary school student about science and working as a scientist.
@@ -128,11 +159,24 @@ service:
   - title: Retrospective Degree Day Fluids Demonstrations
     year: 2011
 
-skills:
+all_publications:
+  name: "S. Kachuck"
+  categories:
+    - heading: Journal Articles
+      prefix: J
+      file: journal.bib
+    - heading: Oral Presentations
+      prefix: O
+      file: conference.bib
+    - heading: Posters
+      prefix: P
+      file: posters.bib
+
+skills: 
   - title: Languages
     details: Python, C/C++, FORTRAN, APL, \LaTeX, Matlab
 
-honors:
+honors: 
   - title: Douglas A Fitchen Scholar
     year: 2017
   - title: AGU Outstanding Student Paper Award

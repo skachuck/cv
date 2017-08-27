@@ -51,7 +51,7 @@ def get_pub_md(context, config):
             formatted_authors.append(new_auth)
         return formatted_authors
 
-    def _get_pub_str(pub, prefix, gidx):
+    def _get_pub_str(pub, prefix, gidx, includeImage):
         author_str = _get_author_str(pub['author'])
         # prefix = category['prefix']
         title = pub['title']
@@ -66,14 +66,13 @@ def get_pub_md(context, config):
         assert('_venue' in pub and 'year' in pub)
         yearVenue = "{} {}".format(pub['_venue'], pub['year'])
 
-        imgStr = '<img src="images/publications/{}.png"/>'.format(pub['ID'])
+        imgStr = '<img src="/images/publications/{}.png" style="width:100px"/>'.format(pub['ID'])
         links = ['[{}{}]'.format(prefix, gidx)]
         abstract = ''
         if 'abstract' in pub:
             links.append("""
 [<a href='javascript: none'
-    onclick=\'$(\"#abs_{}\").toggle()\'>abs</a>]
-""".format(pub['ID']))
+    onclick=\'$(\"#abs_{}{}\").toggle()\'>abs</a>]""".format(pub['ID'], prefix))
             abstract = context.make_replacements(pub['abstract'])
         if 'link' in pub:
             imgStr = "<a href=\'{}\' target='_blank'>{}</a> ".format(
@@ -87,23 +86,36 @@ def get_pub_md(context, config):
 
         if abstract:
             abstract = '''
-<div id="abs_{}" style="text-align: justify; display: none" markdown="1">
+<div id="abs_{}{}" style="text-align: justify; display: none" markdown="1">
 {}
 </div>
-'''.format(pub['ID'], abstract)
+'''.format(pub['ID'], prefix, abstract)
 
-        return '''
-    <tr>
-    <td class="col-md-3">{}</td>
-    <td>
-        <strong>{}</strong><br>
-        {}<br>
-        {}<br>
-        {}<br>
-        {}
-    </td>
-    </tr>
-    '''.format(imgStr, title, author_str, yearVenue, links, abstract)
+        if includeImage:
+            return '''
+<tr>
+<td class="col-md-3" style="width:25%" valign="top">{}</td>
+<td>
+    <strong>{}</strong><br>
+    {}<br>
+    {}<br>
+    {}<br>
+    {}
+</td>
+</tr>
+'''.format(imgStr, title, author_str, yearVenue, links, abstract)
+        else:
+            return '''
+<tr>
+<td>
+    <strong>{}</strong><br>
+    {}<br>
+    {}<br>
+    {}<br>
+    {}
+</td>
+</tr>
+'''.format(title, author_str, yearVenue, links, abstract)
 
     def load_and_replace(bibtex_file):
         with open(os.path.join('publications', bibtex_file), 'r') as f:
@@ -113,34 +125,32 @@ def get_pub_md(context, config):
                 pub[field] = context.make_replacements(pub[field])
             pub['author'] = _format_author_list(pub['author'])
         return p
+    if 'categories' in config:
+        contents = []
+        for category in config['categories']:
+            type_content = {}
+            type_content['title'] = category['heading']
 
-    # contents = []
-    # for category in config['categories']:
-    #     type_content = {}
-    #     type_content['title'] = category['heading']
+            pubs = load_and_replace(category['file'])
 
-    #     pubs = load_and_replace(category['file'])
-
-    #     details = ""
-    #     # sep = "<br><br>\n"
-    #     sep = "\n"
-    #     for i, pub in enumerate(pubs):
-    #         details += _get_pub_str(pub, category['prefix'], i + 1) + sep
-    #     type_content['details'] = details
-    #     type_content['file'] = category['file']
-    #     contents.append(type_content)
-
-    # print(config)
-    # import sys; sys.exit(-1)
-
-    contents = {}
-    pubs = load_and_replace(config['file'])
-    details = ""
-    sep = "\n"
-    for i, pub in enumerate(pubs):
-        details += _get_pub_str(pub, '', i + 1) + sep
-    contents['details'] = details
-    contents['file'] = config['file']
+            details = ""
+            # sep = "<br><br>\n"
+            sep = "\n"
+            for i, pub in enumerate(pubs):
+                details += _get_pub_str(pub, category['prefix'],
+                                        i + 1, includeImage=False) + sep
+            type_content['details'] = details
+            type_content['file'] = category['file']
+            contents.append(type_content)
+    else:
+        contents = {}
+        pubs = load_and_replace(config['file'])
+        details = ""
+        sep = "\n"
+        for i, pub in enumerate(pubs):
+            details += _get_pub_str(pub, '', i + 1, includeImage=True) + sep
+        contents['details'] = details
+        contents['file'] = config['file']
 
     return contents
 
@@ -222,9 +232,10 @@ class RenderContext(object):
                 section_data['items'] = section_content
                 section_template_name = os.path.join(
                     self.SECTIONS_DIR, section_tag + self._file_ending)
-            elif section_tag == 'publications':
+            elif 'publications' in section_tag:
+                section_data['goog_id'] = yaml_data['social']['google_scholar']
                 if self._file_ending == ".tex":
-                    section_data['content'] = section_content
+                    section_data['content'] = section_content 
                 elif self._file_ending == ".md":
                     section_data['content'] = get_pub_md(self, section_content)
                 section_template_name = os.path.join(
