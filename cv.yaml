@@ -144,12 +144,18 @@ publications:
   file: journal.bib
 
 activities: 
+  - title: Wesleyan University Alumni Interviewer
+    year: 2015-
+    description: Conducted interviews for prospective students for Wesleyan University.
   - title: Letters to a Pre-Scientist
     year: 2016-
-    description: Was pen-pal to elementary school student about science and working as a scientist.
+    description: Was pen-pal with elementary students from underserved schools about science and working as a scientist.
+  - title: Engineering Graduate Symposium Judging
+    year: 2018
+    description: Judged poster presentations given by graduate students in the University of Michigan School of Engineering,
   - title: Local Geology Walk
-    year: 2016
-    description: "Led groups of students and faculty on tours of Ithaca's geological past."
+    year: 2016-2018
+    description: "Led groups of students and faculty on tours of Ithaca's geological past, highlighting the physical mechanisms that shape the world around us."
   - title: Graduate Teaching Assistant Review
     year: 2013
   - title: Graduate Teaching Assistant Training
